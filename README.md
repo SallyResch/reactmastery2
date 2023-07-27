@@ -1,3 +1,5 @@
+Fixed errors with fetching via chatgpt: https://chat.openai.com/share/2f8fbd07-45a3-4635-ad53-7aed43e10006
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

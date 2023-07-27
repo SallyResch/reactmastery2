@@ -1,20 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import './App.css';
 import SearchIcon from './search.svg';
 import MovieCard from "./MovieCard";
 //Here is your movies API key: b9a2a929
-const API_URL = 'http://www.omdbapi.com?apikey=b9a2a929'
+const API_URL = 'https://www.omdbapi.com?apikey=b9a2a929';
 //To use the API we have to use a useEffect hook
 
 const App = () => {
   const [movies, setMovies] = useState([]);
-  const [searchTerm, setSearchTerm] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+
   //fetching of API objects
   const searchMovies = async (title) => {
-    const response = await fetch(`${API_URL}&s=${title}`);
-    const data = await response.json();
-    setMovies(data.Search);
-  }
+    try {
+      const response = await fetch(`${API_URL}&s=${title}`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      setMovies(data.Search);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
 
   return (
     <div className="app">
